@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class DbService {
-  apiKey:string = "e8067b53";
+  apiKey:string = "f96f0840";
   constructor(private httpClient: HttpClient) { }
 
   getFilm(film: string): Observable<categoryInterface[]> {

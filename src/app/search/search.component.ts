@@ -6,14 +6,12 @@ import { DbService } from '../db.service';
 
 @Component({
   selector: 'app-search',
-  templateUrl: './search.component.html',
+  templateUrl: './search.component.html', 
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
   response: any;
-
   @ViewChild('searchInput', { static: true }) searchInput: ElementRef;
-  
   
   constructor(
     public service: DbService,
