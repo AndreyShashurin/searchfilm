@@ -1,0 +1,24 @@
+<div style="margin: 50px;">
+
+    <div class="container" style="text-align:center">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1>Поиск фильма</h1>
+          <mat-form-field>
+            <input matInput #searchInput>
+          </mat-form-field> 
+          <button mat-raised-button color="primary" class="ml-4">Primary</button>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-3" *ngFor="let film of response.Search">
+            <div class="card" style="margin:5px;" (click)="getClick(film.imdbID)">
+              <img class="card-img-top" src="{{film.Poster}}">
+              <div class="card-body">
+                <h5 class="card-title">{{film.Title}}</h5>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
