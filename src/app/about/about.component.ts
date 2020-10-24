@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { DbService } from '../db.service';
-import { categoryInterface } from '../interface.service';
 
 @Component({
   selector: 'app-about',
@@ -21,8 +20,9 @@ export class AboutComponent implements OnInit {
         let id = params.id;
         this.db.searchId(id).subscribe(complite => {
           this.film = complite
-        }, error => console.error())
-      });
+        }, 
+        error => console.error(error)
+      )
+    });
   }
-
 }

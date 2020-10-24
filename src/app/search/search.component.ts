@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { fromEvent } from 'rxjs';
 import { map, filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { DbService } from '../db.service';
+import { categoryInterface } from '../interface.service';
 
 @Component({
   selector: 'app-search',
@@ -10,23 +11,22 @@ import { DbService } from '../db.service';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  response: any;
+  response: any = [];
   @ViewChild('searchInput', { static: true }) searchInput: ElementRef;
   
   constructor(
-    public service: DbService,
+    private service: DbService,
     private router: Router
   ) {
-    this.response = []
   }
 
   ngOnInit() {
     fromEvent(this.searchInput.nativeElement, 'keyup').pipe(
       map((event: any) => {
         return event.target.value;
-      })
-      ,filter(res => res.length > 4)
-      ,distinctUntilChanged()
+      }),
+      filter(res => res.length >= 5),
+      distinctUntilChanged()
     ).subscribe((text: string) => {
       this.service.getFilm(text).subscribe((res) => {
         this.response = res;
