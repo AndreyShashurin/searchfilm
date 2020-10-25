@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="row">
-          <div class="col-3" *ngFor="let film of response.Search">
+          <div class="col-3" *ngFor="let film of response">
             <div class="card" style="margin:5px;" (click)="getClick(film.imdbID)">
               <img class="card-img-top" src="{{film.Poster}}">
               <div class="card-body">

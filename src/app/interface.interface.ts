@@ -1,5 +1,3 @@
-import { Injectable } from '@angular/core';
-
 export interface categoryInterface {
     Title: number,
     Type?: string,
@@ -29,11 +27,4 @@ export interface categoryInterface {
     Production: string,
     Website: string,
     Response: boolean
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class InterfaceService {
-  constructor() { }
 }

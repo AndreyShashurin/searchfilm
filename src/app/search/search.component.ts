@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { fromEvent } from 'rxjs';
-import { map, filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { map, filter, distinctUntilChanged } from 'rxjs/operators';
 import { DbService } from '../db.service';
-import { categoryInterface } from '../interface.service';
+import { categoryInterface } from '../interface.interface';
 
 @Component({
   selector: 'app-search',
@@ -11,14 +11,13 @@ import { categoryInterface } from '../interface.service';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  response: any = [];
+  response: categoryInterface[];
   @ViewChild('searchInput', { static: true }) searchInput: ElementRef;
   
   constructor(
     private service: DbService,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     fromEvent(this.searchInput.nativeElement, 'keyup').pipe(
@@ -29,11 +28,10 @@ export class SearchComponent implements OnInit {
       distinctUntilChanged()
     ).subscribe((text: string) => {
       this.service.getFilm(text).subscribe((res) => {
-        this.response = res;
+        this.response = res['Search'];
       }, (err) => {
         console.error('error', err);
       });
-
     });
   }
   

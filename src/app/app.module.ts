@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DbService } from './db.service';
-import { InterfaceService } from './interface.service';
 import { AboutComponent } from './about/about.component';
 import { SearchComponent } from './search/search.component';
 import {MatButtonModule} from '@angular/material/button';
@@ -28,8 +27,7 @@ import {MatButtonModule} from '@angular/material/button';
   ],
   providers: [
     HttpClient,
-    DbService,
-    InterfaceService
+    DbService
   ],
   bootstrap: [AppComponent]
 })
