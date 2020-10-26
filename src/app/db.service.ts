@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class DbService {
   readonly apiKey:string = "f96f0840";
+
   constructor(private httpClient: HttpClient) { }
 
   getFilm(film: string): Observable<categoryInterface[]> {

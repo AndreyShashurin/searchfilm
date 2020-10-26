@@ -1,9 +1,56 @@
 <div class="container">
     <div class="card">
-        <img class="card-img-top img-thumbnail" src="{{film?.Poster}}">
-        <div class="card-body">
-            <h1 class="card-title">{{film?.Title}}</h1>
-            <p class="card-text">{{film?.Plot}}</p>
+        <div class="card-flex">
+            <div class="card-img"><img class="card-img-top img-thumbnail" src="{{film?.Poster}}"></div>
+            <div class="card-body">
+                <h1 class="card-title">{{film?.Title}}</h1>
+                <p class="card-text">{{film?.Plot}}</p>
+                <div>
+                    <h2>О фильме</h2>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Страна</label>
+                        <div class="col-sm-10">
+                          <label class="col-form-label">{{film?.Country}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Язык</label>
+                        <div class="col-sm-10">
+                            <label class="col-form-label">{{film?.Language}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Жанр</label>
+                        <div class="col-sm-10">
+                            <label class="col-form-label">{{film?.Genre}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Режиссер</label>
+                        <div class="col-sm-10">
+                            <label class="col-form-label">{{film?.Director}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Дата выхода</label>
+                        <div class="col-sm-10">
+                            <label class="col-form-label">{{film?.Released}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Рейтинг</label>
+                        <div class="col-sm-10">
+                            <label class="col-form-label">{{film?.imdbRating}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Актеры</label>
+                        <div class="col-sm-10">
+                            <label class="col-form-label">{{film?.Writer}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

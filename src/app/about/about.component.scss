@@ -1,7 +1,16 @@
 .card {
-    flex-direction: row;
-    &-img-top {
-        height: 250px;
-        width: 200px;
+    &-flex {
+        flex-direction: row;
+        display: flex;
+    }
+    &-img {
+        padding: 20px 50px;
+        flex-shrink: 0;
+        flex-shrink: inherit;
+        width: auto;
+        &-img-top {
+            height: 250px;
+            width: 200px;
+        }
     }
 }
