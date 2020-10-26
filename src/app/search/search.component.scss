@@ -1,3 +1,8 @@
+.search-box {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
 table {
     width: 100%;
     img {
@@ -13,6 +18,10 @@ table {
     }
 }
 .mat {
+    &-button-base {
+        margin-bottom: 0.338em;
+        box-shadow: none;
+    }
     &-form-field {
         width: 50%;
         &-infix {
@@ -21,9 +30,6 @@ table {
         }
         &-wrapper {
             padding-bottom: 0 !important;
-        }
-        &-underline {
-            background-color: none !important;
         }
     }
     &-list {
