@@ -1,8 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild, ɵConsole } from '@angular/core';
+import { Component, ElementRef, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
-import { fromEvent } from 'rxjs';
-import { map, filter, distinctUntilChanged, finalize, delay } from 'rxjs/operators';
+import { fromEvent, Subscription } from 'rxjs';
+import { map, filter, distinctUntilChanged, delay } from 'rxjs/operators';
 import { DbService } from '../db.service';
 import { categoryInterface } from '../interface.interface';
 import { AlertService } from '../alert.service';
@@ -12,7 +12,7 @@ import { AlertService } from '../alert.service';
   templateUrl: './search.component.html', 
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   searchField: string;
   message: string;
   isSearching: boolean = false;
@@ -22,6 +22,7 @@ export class SearchComponent implements OnInit {
   dataSource = new MatTableDataSource;
   displayedColumns: string[] = ['Poster', 'Title', 'Year'];
   response: categoryInterface[] = [];
+  aSub: Subscription
   @ViewChild('searchInput', { static: true }) searchInput: ElementRef;
   
   constructor(
@@ -31,7 +32,7 @@ export class SearchComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    fromEvent(this.searchInput.nativeElement, 'keyup').pipe(
+    this.aSub = fromEvent(this.searchInput.nativeElement, 'keyup').pipe(
       map((event: any) => {
         return event.target.value;
       }),
@@ -89,5 +90,11 @@ export class SearchComponent implements OnInit {
       this.message = ''
       this.error = false
     }, this.alert.delay)
+  }
+
+  ngOnDestroy(): void {
+    if (this.aSub) {
+      this.aSub.unsubscribe()
+    }
   }
 }
