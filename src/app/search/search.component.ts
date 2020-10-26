@@ -14,6 +14,7 @@ import { AlertService } from '../alert.service';
 })
 export class SearchComponent implements OnInit {
   searchField: string;
+  message: string;
   isSearching: boolean = false;
   openField: boolean = false;
   error: boolean = false;
@@ -39,20 +40,24 @@ export class SearchComponent implements OnInit {
     ).subscribe((text: string) => {
       this.spiner = true
       this.service.getFilm(text).pipe(  
-        delay(1000),
+        delay(1000)
       ).subscribe((res) => {
         this.spiner = false
         if(res['Search']) {
-          this.response = res;
+          this.response = res
           this.openField = true
           this.error = false
         } else {
           this.error = true
-          this.openField = false
-          this.alert.error('Фильм не найден')
+          this.openField = false      
+          this.getTimeout('Фильм не найден')
         }
       },
-      error => this.alert.error(error)
+      error => {
+          this.spiner = false
+          this.error = true
+          this.getTimeout(error.message)
+        }
       );
     });
   }
@@ -74,5 +79,15 @@ export class SearchComponent implements OnInit {
   selectFilm(data) {
     this.searchField = data;
     this.openField = false
+  }
+
+  getTimeout(text: string) {
+    this.message = text
+    this.alert.error(text)
+    const timeout = setTimeout(() => {
+      clearTimeout(timeout)
+      this.message = ''
+      this.error = false
+    }, this.alert.delay)
   }
 }

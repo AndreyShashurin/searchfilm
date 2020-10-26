@@ -18,7 +18,7 @@
       <div class="row">
         <ng-container *ngIf="error">
           <div class="col-12 text-center">
-            <div class="alert alert-danger" role="alert">Фильм не найден</div>
+            <div class="alert alert-danger" role="alert">{{message}}</div>
           </div>
         </ng-container>
         <ng-template #elseSearch>

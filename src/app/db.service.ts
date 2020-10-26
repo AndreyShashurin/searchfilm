@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, } from "@angular/common/http";
 import { categoryInterface } from './interface.interface';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class DbService {
@@ -9,16 +10,24 @@ export class DbService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getFilm(film: string): Observable<categoryInterface[]> {
+  getFilm(film: string): Observable<any> {
     if (!film) {
       return
     }
-    return this.httpClient.get<categoryInterface[]>('http://www.omdbapi.com/?s=' + film + '&apikey=' + this.apiKey);
+    return this.httpClient.get<categoryInterface[]>('http://www.omdbapi.com/?s=' + film + '&apikey=' + this.apiKey).pipe(
+      catchError((err) => {
+        return throwError(err)
+      })
+    );
   }
   searchId(id: string): Observable<categoryInterface[]> {
     if (!id) {
       return
     }
-    return this.httpClient.get<categoryInterface[]>('http://www.omdbapi.com/?i=' + id + '&apikey=' + this.apiKey);
+    return this.httpClient.get<categoryInterface[]>('http://www.omdbapi.com/?i=' + id + '&apikey=' + this.apiKey).pipe(
+      catchError((err) => {
+        return throwError(err)
+      })
+    );;
   }
 }

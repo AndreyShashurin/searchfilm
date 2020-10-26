@@ -8,8 +8,6 @@ import { AlertService } from '../alert.service';
   styleUrls: ['./alert.component.scss']
 })
 export class AlertComponent implements OnInit, OnDestroy {
-  @Input() delay = 2000
-
   public text: string
   public type = 'success' 
   aSub: Subscription
@@ -26,7 +24,7 @@ export class AlertComponent implements OnInit, OnDestroy {
       const timeout = setTimeout(() => {
         clearTimeout(timeout)
         this.text = ''
-      }, this.delay)
+      }, this.alertService.delay)
     })
   }
 
