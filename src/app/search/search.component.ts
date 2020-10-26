@@ -41,7 +41,7 @@ export class SearchComponent implements OnInit {
       this.service.getFilm(text).pipe(  
         delay(1000),
       ).subscribe((res) => {
-          this.spiner = false
+        this.spiner = false
         if(res['Search']) {
           this.response = res;
           this.openField = true
@@ -51,7 +51,9 @@ export class SearchComponent implements OnInit {
           this.openField = false
           this.alert.error('Фильм не найден')
         }
-      });
+      },
+      error => this.alert.error(error)
+      );
     });
   }
 
